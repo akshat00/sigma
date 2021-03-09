@@ -76,3 +76,9 @@ def register_view(request, *args, **kwargs):
 
     else:
         return render(request, "login/register.html", context)
+
+def overview_view(request):
+    return render(request, 'login/overview.html', {})
+
+def about_view(request):
+    return render(request, 'login/about.html', {})

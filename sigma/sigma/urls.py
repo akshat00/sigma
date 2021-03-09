@@ -18,12 +18,14 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from webapp.views import home_view, login_view, register_view
+from webapp.views import home_view, login_view, register_view, overview_view, about_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name = 'home'),
     path('login/', login_view, name = 'login'),
-    path('register/', register_view, name = 'register')
+    path('register/', register_view, name = 'register'),
+    path('overview/', overview_view, name = 'overview'),
+    path('about/', about_view, name = 'about'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
