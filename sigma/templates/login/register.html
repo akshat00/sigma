@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block header_title %}
+Register
+{% endblock %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'login/style.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'login/navbar.html' %}
+{% endblock %}
+
+{% block body %}
+<div id="container">
+    <div id="left-block"></div>
+    <div id="main-block">
+        <div id="floating-island">
+            <div id="floating-island-title">
+                Register
+            </div>
+            <div id="floating-island-body">
+
+                {% if error %}
+                {% for item in error %}
+                <ul>
+                    <li style="color: red;">{{item}}</li>
+                </ul>
+                {% endfor %}
+                {% endif %}
+
+                <form action="../register/" method="POST">
+                    {% csrf_token %}
+                    <label for="fname">First Name:</label>
+                    <input type="text" name="fname" required>
+
+                    <label for="lname">Last Name:</label>
+                    <input type="text" name="lname" required>
+
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" name="dob" required>
+
+                    <br>
+
+                    <label for="address">Address:</label>
+                    <input type="text" name="address" required>
+
+                    <label for="contact">Contact Number:</label>
+                    <input type="number" name="contact" required>
+
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" required>
+
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" required>
+
+                    <label for="password1">Password:</label>
+                    <input type="password" name="password1" required>
+
+                    <label for="password2">Retype Password:</label>
+                    <input type="password" name="password2" required>
+
+                    <button type="submit" id="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="right-block"></div>
+</div>
+{% endblock %}
