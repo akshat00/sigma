@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block header_title%}
+Home
+{% endblock %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'login/style.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}

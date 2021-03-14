@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
@@ -11,7 +11,7 @@ from .models import UserInfo
 
 def home_view(request):
     if(request.user.is_authenticated):
-        return HttpResponse('<H1>Already Logged in. Add the home page after login.</H1>')
+        return render(request, "home.html", {})
 
     else:
         return redirect(login_view)
@@ -82,3 +82,7 @@ def overview_view(request):
 
 def about_view(request):
     return render(request, 'login/about.html', {})
+
+def logout_view(request):
+    logout(request)
+    return redirect(home_view)
