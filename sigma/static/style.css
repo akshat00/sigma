@@ -69,3 +69,64 @@ body {
 #right-most {
   margin-right: 100px;
 }
+
+#container {
+  float: left;
+  height: 90.5%;
+  width: 100%;
+  margin-top: 20px;
+}
+
+#left-block {
+  float: left;
+
+  width: 20%;
+  height: 100%;
+}
+
+#main-block {
+  float: left;
+
+  width: 60%;
+  height: 100%;
+}
+
+#floating-island {
+  background-color: black;
+  margin: 150 auto;
+  width: min-content;
+}
+
+#floating-island-title {
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 2em;
+  font-weight: bold;
+  text-align: center;
+}
+
+#floating-island-body {
+  background-color: white;
+  border: 1px solid black;
+  padding: 20px;
+}
+
+#floating-island-body label {
+  margin: 10 0 0 0;
+}
+
+#floating-island-body input {
+  width: 300px;
+  margin: 0 0 10 0;
+}
+
+#submit-btn {
+  margin: 10 0 0 105;
+}
+
+#right-block {
+  float: left;
+
+  width: 20%;
+  height: 100%;
+}

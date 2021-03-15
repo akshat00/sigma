@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block header_title%}
+Upload Image
+{% endblock %}
+
+{% block css %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block navbar %}
+{% include 'navbar.html' %}
+{% endblock %}
+
+{% block body %}
+<div id="container">
+    <div id="left-block"></div>
+    <div id="main-block">
+        <div id="floating-island">
+            <div id="floating-island-title">
+                Upload Images
+            </div>
+            <div id="floating-island-body">
+                {% if error %}
+                {% for item in error %}
+                <ul>
+                    <li style="color: red;">{{item}}</li>
+                </ul>
+                {% endfor %}
+                {% endif %}
+
+                <form action="" , method="POST" , enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="text" name="username" id="username" value={{username}} style="display: none;">
+                    {{form.image}}
+                    <button type="submit" id="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="right-block"></div>
+</div>
+{% endblock %}

@@ -18,7 +18,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from webapp.views import home_view, login_view, register_view, overview_view, about_view, home_view, logout_view
+from webapp.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +28,9 @@ urlpatterns = [
     path('overview/', overview_view, name = 'overview'),
     path('about/', about_view, name = 'about'),
     path('logout/', logout_view, name = 'logout'),
+    path('upload/', upload_view, name = 'upload-images')
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
+if settings.DEBUG:
+        urlpatterns += static(settings.MEDIA_URL,
+                              document_root=settings.MEDIA_ROOT)

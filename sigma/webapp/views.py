@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 
 from .models import UserInfo
+from .forms import UploadImageForm
 
 
 # Create your views here.
@@ -86,3 +87,18 @@ def about_view(request):
 def logout_view(request):
     logout(request)
     return redirect(home_view)
+
+def upload_view(request):
+    imageForm = UploadImageForm()
+    context = {}
+    context['form'] = imageForm
+    user = str(request.user)
+    context['username'] = user
+
+    if request.method == 'POST':
+        imageForm = UploadImageForm(request.POST, request.FILES)
+        
+        if imageForm.is_valid():
+            imageForm.save()
+
+    return render(request, "upload_image.html", context)
