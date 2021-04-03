@@ -8,7 +8,7 @@ body {
 }
 
 #navbar {
-  position: fixed;
+  position: relative;
   background-color: #0c4b33;
   width: 100%;
   height: 4.5em;
