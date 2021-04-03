@@ -134,4 +134,4 @@ def dehaze_view(request):
 
     dehaze_image(image_url, base_url)
 
-    return HttpResponse("<h1>SUCCESS</h1>")
+    return redirect(home_view)

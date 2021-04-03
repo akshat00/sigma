@@ -5,10 +5,10 @@ Created on Thursday June 11 16:38:42 2020
 import cv2
 import numpy as np
 
-from Airlight import Airlight
-from BoundCon import BoundCon
-from CalTransmission import CalTransmission
-from removeHaze import removeHaze
+from .Airlight import Airlight
+from .BoundCon import BoundCon
+from .CalTransmission import CalTransmission
+from .removeHaze import removeHaze
 import os
 
 def dehaze_image(file_url,base_url):
@@ -41,9 +41,9 @@ def dehaze_image(file_url,base_url):
     HazeCorrectedImg = removeHaze(HazeImg, Transmission, A, 0.85)
 
     result_url = base_url + "/media/images"
-    file_name = os.path.basename(img_A_path)
-    img_name = result_folder+'/' + file_name
+    file_name = os.path.basename(file_url)
+    img_name = result_url+'/' + file_name
 
-    imwrite(img_name, HazeCorrectedImg)
+    cv2.imwrite(img_name, HazeCorrectedImg)
 
     #cv2.imwrite('outputImages/result.jpg', HazeCorrectedImg)
