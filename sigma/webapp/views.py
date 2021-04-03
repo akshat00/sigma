@@ -126,3 +126,9 @@ def low_light_view(request):
     low_light_enhancement(image_url, base_url)
 
     return redirect(home_view)
+
+def dehaze_view(request):
+    base_url = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    image_url = base_url + request.POST.get('file_name')
+
+    return HttpResponse("<h1>SUCCESS</h1>")

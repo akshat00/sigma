@@ -29,7 +29,9 @@ urlpatterns = [
     path('about/', about_view, name = 'about'),
     path('logout/', logout_view, name = 'logout'),
     path('upload/', upload_view, name = 'upload-images'),
-    path('low_light/', low_light_view, name = 'low-light')
+    path('low_light/', low_light_view, name = 'low-light'),
+    path('dehazing/', dehaze_view, name = 'dehaze'),
+
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:

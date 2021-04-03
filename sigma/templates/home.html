@@ -39,10 +39,17 @@ Home
               <form action="/low_light/" method="POST">
                 {% csrf_token %}
                 <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
-                <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+                <button type="submit" class="btn btn-sm btn-outline-secondary">low light</button>
               </form>
 
-              <!-- <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+              
+              <form action="/dehazing/" method="POST">
+                {% csrf_token %}
+                <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">De-Haze</button>
+              </form>
+
+              {% comment %} <button type="submit" class="btn btn-sm btn-outline-secondary"></button>  {% endcomment %}
             </div>
           </div>
         </div>
