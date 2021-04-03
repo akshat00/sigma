@@ -3,6 +3,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.http import HttpResponse
+from main.test import low_light_enhancement
+import os
 
 from .models import UserInfo, UploadImage
 from .forms import UploadImageForm
@@ -116,3 +118,11 @@ def upload_view(request):
             imageForm.save()
 
     return render(request, "upload_image.html", context)
+
+def low_light_view(request):
+    base_url = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    image_url = base_url + request.POST.get('file_name')
+
+    low_light_enhancement(image_url, base_url)
+
+    return redirect(home_view)

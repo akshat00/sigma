@@ -35,7 +35,14 @@ Home
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{item.image.url}}"
                   style="text-decoration: none; color: gray;">View</a></button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+
+              <form action="/low_light/" method="POST">
+                {% csrf_token %}
+                <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
+                <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button>
+              </form>
+
+              <!-- <button type="submit" class="btn btn-sm btn-outline-secondary">Edit</button> -->
             </div>
           </div>
         </div>
