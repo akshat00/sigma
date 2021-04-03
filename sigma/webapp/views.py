@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 from main.test import low_light_enhancement
 import os
+from src.example import dehaze_image
 
 from .models import UserInfo, UploadImage
 from .forms import UploadImageForm
@@ -130,5 +131,7 @@ def low_light_view(request):
 def dehaze_view(request):
     base_url = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     image_url = base_url + request.POST.get('file_name')
+
+    dehaze_image(image_url, base_url)
 
     return HttpResponse("<h1>SUCCESS</h1>")
