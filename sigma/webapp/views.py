@@ -4,28 +4,35 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from django.http import HttpResponse
 
-from .models import UserInfo
+from .models import UserInfo, UploadImage
 from .forms import UploadImageForm
 
 
 # Create your views here.
 
 def home_view(request):
+    context = {}
     if(request.user.is_authenticated):
-        return render(request, "home.html", {})
+        images = UploadImage.objects.filter(username=request.user)
+
+        context['images'] = images
+
+        return render(request, "home.html", context)
 
     else:
         return redirect(login_view)
+
 
 def login_view(request):
     context = {}
     if(request.method == 'POST'):
         email = request.POST.get('email')
         password = request.POST.get('password')
-        username = User.objects.filter(email = email)
+        username = User.objects.filter(email=email)
 
         if(username.exists()):
-            user = authenticate(request, username = username[0], password = password)
+            user = authenticate(
+                request, username=username[0], password=password)
 
             if user is not None:
                 login(request, user)
@@ -42,12 +49,13 @@ def login_view(request):
     else:
         return render(request, "login/login.html", context)
 
+
 def register_view(request, *args, **kwargs):
     context = {}
 
     if(request.method == 'POST'):
         if(request.POST.get('password1') == request.POST.get('password2')):
-            if(not User.objects.filter(username = request.POST.get('username')).exists()):
+            if(not User.objects.filter(username=request.POST.get('username')).exists()):
                 if(len(request.POST.get('contact')) == 10):
                     fname = request.POST.get('fname')
                     lname = request.POST.get('lname')
@@ -58,10 +66,12 @@ def register_view(request, *args, **kwargs):
                     email = request.POST.get('email')
                     password = request.POST.get('password1')
 
-                    user = User.objects.create_user(first_name = fname, last_name = lname, email = email, username = username, password = password)
+                    user = User.objects.create_user(
+                        first_name=fname, last_name=lname, email=email, username=username, password=password)
                     user.save()
 
-                    user_info = UserInfo(email = email, dob = dob, address = address, contact = contact)
+                    user_info = UserInfo(
+                        email=email, dob=dob, address=address, contact=contact)
                     user_info.save()
 
                 else:
@@ -78,15 +88,19 @@ def register_view(request, *args, **kwargs):
     else:
         return render(request, "login/register.html", context)
 
+
 def overview_view(request):
     return render(request, 'login/overview.html', {})
+
 
 def about_view(request):
     return render(request, 'login/about.html', {})
 
+
 def logout_view(request):
     logout(request)
     return redirect(home_view)
+
 
 def upload_view(request):
     imageForm = UploadImageForm()
@@ -97,7 +111,7 @@ def upload_view(request):
 
     if request.method == 'POST':
         imageForm = UploadImageForm(request.POST, request.FILES)
-        
+
         if imageForm.is_valid():
             imageForm.save()
 
