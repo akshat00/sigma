@@ -6,6 +6,7 @@ from django.http import HttpResponse
 from main.test import low_light_enhancement
 import os
 from src.example import dehaze_image
+from main.black_white import black_white_img
 
 from .models import UserInfo, UploadImage
 from .forms import UploadImageForm
@@ -135,3 +136,11 @@ def dehaze_view(request):
     dehaze_image(image_url, base_url)
 
     return redirect(home_view)
+
+def black_white_view(request):
+    base_url = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    image_url = base_url + request.POST.get('file_name')
+
+    black_white_img(image_url, base_url)
+
+    return redirect('../', request)

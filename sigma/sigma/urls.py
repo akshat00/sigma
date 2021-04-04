@@ -31,6 +31,7 @@ urlpatterns = [
     path('upload/', upload_view, name = 'upload-images'),
     path('low_light/', low_light_view, name = 'low-light'),
     path('dehazing/', dehaze_view, name = 'dehaze'),
+    path('black_white/', black_white_view, name = 'black-white')
 
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
