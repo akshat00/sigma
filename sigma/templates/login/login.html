@@ -7,6 +7,7 @@ Login
 {% block css %}
 {% load static %}
 <link rel="stylesheet" href="{% static 'login/style.css' %}">
+
 {% endblock %}
 
 {% block navbar %}
@@ -38,7 +39,7 @@ Login
                     <label for="password">Password:</label>
                     <input type="password" name="password" required>
 
-                    <button type="submit" id="submit-btn">Submit</button>
+                    <button class="btn btn-outline-success" type="submit" id="submit-btn">Submit</button>
                 </form>
             </div>
         </div>

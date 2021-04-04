@@ -92,13 +92,13 @@ body {
 }
 
 #floating-island {
-  background-color: black;
+  background-color: GREEN;
   margin: 150 auto;
   width: min-content;
 }
 
 #floating-island-title {
-  color: white;
+  color: e0ffe5;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 2em;
   font-weight: bold;
@@ -107,7 +107,7 @@ body {
 
 #floating-island-body {
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #e0ffe5;
   padding: 20px;
 }
 
