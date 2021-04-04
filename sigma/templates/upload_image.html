@@ -14,45 +14,47 @@ Upload Image
 {% block navbar %}
 <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0ffe5;">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/"> <img src="/../media/logo/logo.png" ></a>
-      <ul class="navbar-nav justify-content-end mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active mx-3 my-1" aria-current="page" href="/" style="text-decoration: none; color: green">HOME</a>
-        </li>
-       <li class="nav-item">
-        <button class="btn-sm btn-outline-danger mx-3 my-2" href="../../logout/" style="text-decoration: none; color: red">Logout</a></button>
-        </li>
-        </ul>
-    </div>
+    <a class="navbar-brand" href="/"> <img src="/../media/logo/logo.png"></a>
+    <ul class="navbar-nav justify-content-end mb-2 mb-lg-0">
+      <li class="nav-item">
+        <a class="nav-link active mx-3 my-1" aria-current="page" href="/"
+          style="text-decoration: none; color: green">HOME</a>
+      </li>
+      <li class="nav-item">
+        <button class="btn-sm btn-outline-danger mx-3 my-2"> <a href="../../logout/"
+            style="text-decoration: none; color: red">LOGOUT</a></button>
+      </li>
+    </ul>
+  </div>
 </nav>
 {% endblock %}
 
 {% block body %}
 <div id="container">
-    <div id="left-block"></div>
-    <div id="main-block">
-        <div id="floating-island">
-            <div id="floating-island-title">
-                Upload Images
-            </div>
-            <div id="floating-island-body">
-                {% if error %}
-                {% for item in error %}
-                <ul>
-                    <li style="color: red;">{{item}}</li>
-                </ul>
-                {% endfor %}
-                {% endif %}
+  <div id="left-block"></div>
+  <div id="main-block">
+    <div id="floating-island">
+      <div id="floating-island-title">
+        Upload Images
+      </div>
+      <div id="floating-island-body">
+        {% if error %}
+        {% for item in error %}
+        <ul>
+          <li style="color: red;">{{item}}</li>
+        </ul>
+        {% endfor %}
+        {% endif %}
 
-                <form action="" , method="POST" , enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <input type="text" name="username" id="username" value={{username}} style="display: none;">
-                    {{form.image}}
-                    <button class="btn btn-outline-success" type="submit" id="submit-btn">Submit</button>
-                </form>
-            </div>
-        </div>
+        <form action="" , method="POST" , enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="text" name="username" id="username" value={{username}} style="display: none;">
+          {{form.image}}
+          <button class="btn btn-outline-success" type="submit" id="submit-btn">Submit</button>
+        </form>
+      </div>
     </div>
-    <div id="right-block"></div>
+  </div>
+  <div id="right-block"></div>
 </div>
 {% endblock %}

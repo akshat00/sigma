@@ -5,76 +5,79 @@ SIGMA-home
 {% endblock %}
 
 {% block navbar %}
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0ffe5;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/"> <img src="/../media/logo/logo.png" ></a>
-       
-        <ul class="navbar-nav justify-content-end mb-2 mb-lg-0">
-       
-          <li class="nav-item">
-           <a class="nav-link active mx-3 my-1" aria-current="page" href="../upload/" style="text-decoration: none; color: green">UPLOAD</a>
-          </li>
-       
-          <li class="nav-item">
-            <button class="btn-sm btn-outline-danger mx-3 my-2" href="../../logout/" style="text-decoration: none; color: red">LOGOUT</a></button>
-          </li>
-        </ul>
-      </div>
-  </nav>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e0ffe5;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"> <img src="/../media/logo/logo.png"></a>
+
+    <ul class="navbar-nav justify-content-end mb-2 mb-lg-0">
+
+      <li class="nav-item">
+        <a class="nav-link active mx-3 my-1" aria-current="page" href="../upload/"
+          style="text-decoration: none; color: green">UPLOAD</a>
+      </li>
+
+      <li class="nav-item">
+        <button class="btn-sm btn-outline-danger mx-3 my-2"> <a href="../../logout/"
+            style="text-decoration: none; color: red">LOGOUT</a></button>
+      </li>
+    </ul>
+  </div>
+</nav>
 {% endblock %}
 
 {% block body %}
 
-  <div class="container" style="position:relative; height:100px; top:20px">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+<div class="container" style="position:relative; height:100px; top:20px">
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
 
-      {% for item in images %}
-        {{item.url}}
-        <div class="col">
-          
-          <div class="card shadow-sm">
-            <img src="{{item.image.url}}" alt="" class="img-thumbnail img-fluid" style="height:250px; object-fit: cover;">
+    {% for item in images %}
+    {{item.url}}
+    <div class="col">
 
-            <div class="card-body">
-              <div class="d-flex justify-content-between align-items-center">
-                
-                <div class="btn-sm">
-                  <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{item.image.url}}"
-                    style="text-decoration: none; color: gray;">View</a></button>
-                </div>
+      <div class="card shadow-sm">
+        <img src="{{item.image.url}}" alt="" class="img-thumbnail img-fluid" style="height:250px; object-fit: cover;">
 
-                <div class="dropdown">
-                  
-                  <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apply Effect</button>
-                  
-                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    
-                    <form action="/low_light/" method="POST">
-                      {% csrf_token %}
-                      <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
-                      <button class="dropdown-item" type='submit'>Low Light Enhancement</button>
-                    </form>
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-center">
 
-                    <form action="/dehazing/" method="POST">
-                      {% csrf_token %}
-                      <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
-                      <button type="submit" class="dropdown-item">De-Haze</button>
-                    </form>
+            <div class="btn-sm">
+              <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{{item.image.url}}"
+                  style="text-decoration: none; color: gray;">View</a></button>
+            </div>
 
-                    <form action="/dehazing/" method="POST">
-                      {% csrf_token %}
-                      <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
-                      <button type="submit" class="dropdown-item">B&W</button>
-                    </form>
+            <div class="dropdown">
 
-                  </div>
-                </div>
+              <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Apply Effect</button>
+
+              <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+
+                <form action="/low_light/" method="POST">
+                  {% csrf_token %}
+                  <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
+                  <button class="dropdown-item" type='submit'>Low Light Enhancement</button>
+                </form>
+
+                <form action="/dehazing/" method="POST">
+                  {% csrf_token %}
+                  <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
+                  <button type="submit" class="dropdown-item">De-Haze</button>
+                </form>
+
+                <form action="/dehazing/" method="POST">
+                  {% csrf_token %}
+                  <input type="text" name="file_name" id="" value="{{item.image.url}}" style="display: none;">
+                  <button type="submit" class="dropdown-item">B&W</button>
+                </form>
+
               </div>
             </div>
           </div>
         </div>
-      {% endfor %}
+      </div>
     </div>
+    {% endfor %}
   </div>
+</div>
 
 {% endblock body%}
